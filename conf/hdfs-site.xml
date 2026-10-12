@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>3</value>
+  </property>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///var/lib/hadoop/namenode</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///var/lib/hadoop/datanode</value>
+  </property>
+  <property>
+    <name>dfs.namenode.secondary.http-address</name>
+    <value>team-23-en:9868</value>
+  </property>
+  <property>
+    <name>dfs.namenode.checkpoint.dir</name>
+    <value>file:///var/lib/hadoop/namesecondary</value>
+  </property>
+  <property>
+    <name>dfs.namenode.checkpoint.edits.dir</name>
+    <value>file:///var/lib/hadoop/namesecondary</value>
+  </property>
+  <property>
+    <name>dfs.namenode.safemode.min.datanodes</name>
+    <value>3</value>
+  </property>
+</configuration>
