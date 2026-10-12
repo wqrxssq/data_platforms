@@ -1,0 +1,4 @@
+export YARN_RESOURCEMANAGER_HEAPSIZE=512
+export YARN_NODEMANAGER_HEAPSIZE=256
+export HADOOP_LOG_DIR=/var/log/hadoop
+export HADOOP_PID_DIR=/var/lib/hadoop/pids
