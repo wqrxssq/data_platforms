@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- Общие настройки для HiveServer2 и клиентов, без пароля от базы -->
+<configuration>
+  <property><name>hive.metastore.uris</name><value>thrift://team-23-nn:9083</value></property>
+  <property><name>hive.metastore.warehouse.dir</name><value>/user/hive/warehouse</value></property>
+  <property><name>hive.exec.scratchdir</name><value>/tmp/hive</value></property>
+  <property><name>hive.execution.engine</name><value>mr</value></property>
+  <property><name>hive.exec.mode.local.auto</name><value>false</value></property>
+
+  <!-- Хеш-таблицы map join строятся внутри HiveServer2: отдельная JVM локальной задачи не стартует на Java 17,
+       в map join попадают только таблицы меньше hive.auto.convert.join.noconditionaltask.size (10 МБ) -->
+  <property><name>hive.exec.submit.local.task.via.child</name><value>false</value></property>
+  <!-- В Hadoop 3.4 нет commons-collections 3.x, а операторам Hive в задачах он нужен -->
+  <property><name>hive.aux.jars.path</name><value>file:///opt/hive/lib/commons-collections-3.2.2.jar</value></property>
+  <!-- Задачи MapReduce от Hive: память как в ДЗ 2 и доступ к модулям JDK для Java 17 -->
+  <property><name>mapreduce.map.java.opts</name><value>-Xmx256m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.util.regex=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED</value></property>
+  <property><name>mapreduce.reduce.java.opts</name><value>-Xmx256m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.util.regex=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED</value></property>
+  <property><name>yarn.app.mapreduce.am.command-opts</name><value>-Xmx256m --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.util.regex=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED</value></property>
+
+  <property><name>hive.server2.thrift.bind.host</name><value>team-23-en</value></property>
+  <property><name>hive.server2.thrift.port</name><value>10000</value></property>
+  <property><name>hive.server2.webui.host</name><value>team-23-en</value></property>
+  <property><name>hive.server2.webui.port</name><value>10002</value></property>
+  <!-- Запросы выполняются от пользователя hive, без проксирования -->
+  <property><name>hive.server2.enable.doAs</name><value>false</value></property>
+  <property><name>hive.server2.authentication</name><value>NONE</value></property>
+
+  <property><name>hive.metastore.event.db.notification.api.auth</name><value>false</value></property>
+</configuration>
