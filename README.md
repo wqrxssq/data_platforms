@@ -5,5 +5,6 @@
 - [ДЗ 1 — HDFS](hm1/README.md)
 - [ДЗ 2 — YARN и веб-интерфейсы](hm2/README.md)
 - [ДЗ 3 — Hive](hm3/README.md)
+- [ДЗ 4 — Spark](hm4/README.md)
 
 Скрипты установки запускаются из папки нужного ДЗ на edge-ноде
